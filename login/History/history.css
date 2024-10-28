@@ -1,0 +1,119 @@
+/* General Reset */
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+}
+
+/* Container */
+.container {
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+h1 {
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 1rem;
+}
+
+table th, table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+table th {
+    background-color: orangered;
+    color: white;
+    font-weight: 600;
+}
+
+table td {
+    background-color: #fff;
+}
+
+table tr:hover td {
+    background-color: #f9f9f9;
+}
+
+/* Buttons */
+.btn-delete, .btn-clear {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-delete:hover, .btn-clear:hover {
+    background-color: #d32f2f;
+}
+
+.btn-clear {
+    margin-bottom: 10px;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    table th, table td {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+
+    .btn-delete, .btn-clear {
+        font-size: 0.9rem;
+        padding: 8px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.3rem;
+    }
+
+    table th, table td {
+        font-size: 0.85rem;
+        padding: 8px;
+    }
+
+    .btn-delete, .btn-clear {
+        font-size: 0.85rem;
+        padding: 7px 8px;
+    }
+}

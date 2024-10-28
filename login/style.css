@@ -1,0 +1,278 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f0f4f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+.auth-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+}
+
+.auth-card {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    max-width: 500px;
+    
+    width: 100%;
+    padding: 40px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auth-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Skip Button Styles */
+.skip-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    border: 2px solid grey;
+    color: grey;
+    font-size: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    z-index: 10; /* Ensure it stays above other elements */
+}
+
+.skip-btn:hover {
+    background-color: whitesmoke;
+    color: black;
+    transform: scale(1.05);
+}
+
+.skip-btn:focus {
+    outline: black;
+}
+
+
+
+
+
+.toggle-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.toggle-buttons button {
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+    padding: 12px 25px;
+    cursor: pointer;
+    color: #777;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+    border-bottom: 2px solid transparent;
+}
+
+.toggle-buttons button.active {
+    color: #ff416c;
+    border-bottom: 2px solid #ff416c;
+}
+
+.form-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+}
+
+.form {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: transform 0.6s ease, opacity 0.6s ease;
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+.form.active {
+    height: 100%;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+h2 {
+     margin-top: 15px;
+    margin-bottom: 10px;
+    font-size: 26px;
+    color: #333;
+    text-align: center;
+}
+
+input {
+    margin-bottom: 20px;
+    padding: 15px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+    transition: border-color 0.3s, box-shadow 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: #ff416c;
+    box-shadow: 0 0 8px rgba(255, 65, 108, 0.5);
+}
+
+.submit-btn {
+    padding: 15px;
+    background-color: #ff416c;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background-color 0.3s, transform 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: lightseagreen;
+    transform: scale(1.05);
+
+}
+
+.helper-text {
+    text-align: center;
+    color: #999;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.helper-text:hover {
+    color: violet;
+    cursor: pointer;
+}
+
+.google-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 15px;
+    background-color: #ffffff;
+    color: #555;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.google-btn img {
+    width: 25px;
+    margin-right: 10px;
+}
+
+.google-btn:hover {
+    background-color: #f7f7f7;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.separator {
+    text-align: center;
+    color: #777;
+    margin-top: 20px;
+    margin: 10px 0;
+    position: relative;
+    font-size: large;
+}
+
+.separator::before,
+.separator::after {
+    content: "";
+    height: 1px;
+    width: 40%;
+    margin-top: 20px;
+    background: #ddd;
+    position: absolute;
+    top: 60%;
+}
+
+.separator::before {
+    left: 0;
+}
+
+.separator::after {
+    right: 0;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .auth-card {
+        padding: 30px;
+        max-width: 400px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    input {
+        padding: 12px;
+        font-size: 15px;
+    }
+
+    .submit-btn {
+        font-size: 15px;
+        padding: 12px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .auth-card {
+        padding: 20px;
+        max-width: 300px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    input {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .submit-btn {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+

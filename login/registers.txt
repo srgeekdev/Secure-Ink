@@ -1,0 +1,78 @@
+<?php
+include 'connect.php';
+session_start();
+
+if (isset($_POST['signUp'])) {
+    $name = $_POST['fullName'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    // Check if email already exists
+    $checkEmail = "SELECT * FROM users WHERE email = ?";
+    $stmt = $conn->prepare($checkEmail);
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        // Redirect back with error
+        $_SESSION['error'] = "Email Address Already Exists!";
+        header("Location: register.php");
+        exit();
+    } else {
+        // Use password_hash for secure password storage
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        // Insert the user into the database
+        $insertQuery = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
+        $stmt = $conn->prepare($insertQuery);
+        $stmt->bind_param("sss", $name, $email, $hashedPassword);
+
+        if ($stmt->execute()) {
+            header("Location: index.php");
+            exit();
+        } else {
+            // Log the error, don't display in production
+            error_log("Database error: " . $conn->error);
+            $_SESSION['error'] = "An error occurred. Please try again.";
+            header("Location: register.php");
+            exit();
+        }
+    }
+
+    $stmt->close();
+}
+
+if (isset($_POST["signIn"])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    // Retrieve the user from the database
+    $sql = "SELECT * FROM users WHERE email = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+
+        // Verify the password
+        if (password_verify($password, $row['password'])) {
+            $_SESSION["email"] = $row["email"];
+            header("Location: index.html");
+            exit();
+        } else {
+            $_SESSION['error'] = "Incorrect Email or Password";
+            header("Location: login.php");
+            exit();
+        }
+    } else {
+        $_SESSION['error'] = "User not found";
+        header("Location: login.php");
+        exit();
+    }
+
+    $stmt->close();
+}
+?>
